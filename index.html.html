@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup — Creator Site</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12141A;
+    --panel:#1B1E27;
+    --panel-2:#22262F;
+    --line: rgba(237,235,228,0.12);
+    --paper:#EDEBE4;
+    --paper-dim: rgba(237,235,228,0.6);
+    --red:#FF5A46;
+    --amber:#FFC857;
+    --teal:#4FD1C5;
+    --violet:#B79CFF;
+    --display: 'Space Grotesk','Noto Sans Thai',sans-serif;
+    --body: 'Inter','Noto Sans Thai',sans-serif;
+    --mono: 'IBM Plex Mono','Noto Sans Thai',monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  /* ---------- ticker ---------- */
+  .ticker-wrap{
+    background:var(--panel-2);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:8px 0;
+  }
+  .ticker{
+    display:inline-flex;
+    gap:40px;
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.06em;
+    color:var(--paper-dim);
+    animation: scroll-left 28s linear infinite;
+  }
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .ticker span{color:var(--amber);}
+
+  /* ---------- header ---------- */
+  header{
+    max-width:1180px;
+    margin:0 auto;
+    padding:26px 24px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:-.01em;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--red);display:inline-block;}
+  nav.top-nav{display:flex;gap:32px;font-size:14px;color:var(--paper-dim);}
+  nav.top-nav a:hover{color:var(--paper);}
+  .btn-ghost{
+    border:1px solid var(--line);
+    padding:9px 18px;
+    border-radius:100px;
+    font-size:13px;
+    font-family:var(--mono);
+  }
+  .btn-ghost:hover{border-color:var(--paper-dim);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    max-width:1180px;
+    margin:0 auto;
+    padding:64px 24px 0;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--teal);
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px;height:1px;background:var(--teal);
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(38px,4.6vw,58px);
+    line-height:1.06;
+    letter-spacing:-.02em;
+    margin:0 0 22px;
+  }
+  h1 .hl{color:var(--red);}
+  .hero p.lead{
+    font-size:17px;
+    line-height:1.7;
+    color:var(--paper-dim);
+    max-width:46ch;
+    margin:0 0 34px;
+  }
+  .hero-ctas{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--red);
+    color:#12141A;
+    font-family:var(--display);
+    font-weight:600;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:100px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .btn-primary:hover{background:#ff7361;}
+  .btn-text{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--paper-dim);
+    border-bottom:1px solid var(--line);
+    padding-bottom:2px;
+  }
+  .btn-text:hover{color:var(--paper);border-color:var(--paper-dim);}
+
+  /* player frame */
+  .player{
+    position:relative;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,90,70,.35), transparent 45%),
+      radial-gradient(circle at 75% 75%, rgba(79,209,197,.28), transparent 50%),
+      linear-gradient(160deg,#22262F,#14161C);
+    aspect-ratio:4/5;
+  }
+  .player .frame-top{
+    position:absolute;top:0;left:0;right:0;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 16px;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--paper-dim);
+    background:linear-gradient(180deg, rgba(18,20,26,.7), transparent);
+  }
+  .rec{display:flex;align-items:center;gap:6px;color:var(--red);}
+  .rec .dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:pulse 1.6s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .play-btn{
+    position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:74px;height:74px;
+    border-radius:50%;
+    background:rgba(237,235,228,.92);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    transition:transform .25s ease;
+  }
+  .play-btn:hover{transform:translate(-50%,-50%) scale(1.06);}
+  .play-btn svg{margin-left:4px;}
+  .player .frame-bottom{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:16px;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    background:linear-gradient(0deg, rgba(18,20,26,.85), transparent);
+  }
+  .frame-bottom .title-mini{font-family:var(--display);font-weight:600;font-size:15px;}
+  .frame-bottom .time{font-family:var(--mono);font-size:11px;color:var(--paper-dim);}
+
+  /* ---------- timeline nav (signature element) ---------- */
+  .timeline-section{
+    max-width:1180px;
+    margin:70px auto 0;
+    padding:0 24px;
+  }
+  .timeline-label{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--paper-dim);
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+    letter-spacing:.04em;
+  }
+  .timeline{
+    position:relative;
+    display:flex;
+    height:56px;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .clip{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:0 18px;
+    font-family:var(--display);
+    font-weight:600;
+    font-size:13px;
+    color:#12141A;
+    cursor:pointer;
+    overflow:hidden;
+    transition:flex-grow .35s ease;
+  }
+  .clip small{
+    font-family:var(--mono);
+    font-weight:400;
+    font-size:10px;
+    opacity:.65;
+  }
+  .clip.c1{background:var(--red);flex:1.2;}
+  .clip.c2{background:var(--amber);flex:1;}
+  .clip.c3{background:var(--teal);flex:1;}
+  .clip.c4{background:var(--violet);flex:.9;}
+  .clip:hover{flex-grow:1.6;}
+  .playhead{
+    position:absolute;
+    top:-6px;bottom:-6px;
+    width:2px;
+    background:var(--paper);
+    animation:playhead-move 9s linear infinite;
+  }
+  .playhead::before{
+    content:"";
+    position:absolute;top:-5px;left:50%;
+    transform:translateX(-50%);
+    width:0;height:0;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-top:6px solid var(--paper);
+  }
+  @keyframes playhead-move{
+    0%{left:0%;}
+    100%{left:100%;}
+  }
+
+  section{max-width:1180px;margin:0 auto;padding:110px 24px 0;}
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:44px;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-family:var(--display);
+    font-size:clamp(26px,3vw,34px);
+    font-weight:700;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  .section-head .tag{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--teal);
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    margin-bottom:10px;
+    display:block;
+  }
+  .section-head p{color:var(--paper-dim);max-width:42ch;margin:0;font-size:14px;line-height:1.6;}
+
+  /* ---------- media bin grid ---------- */
+  .bin-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .bin-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .bin-card:hover{transform:translateY(-4px);border-color:var(--paper-dim);}
+  .bin-thumb{
+    aspect-ratio:16/10;
+    position:relative;
+    background:linear-gradient(135deg, var(--panel-2), #171A21);
+  }
+  .bin-thumb .cat-tab{
+    position:absolute;top:12px;left:12px;
+    font-family:var(--mono);
+    font-size:10px;
+    padding:4px 9px;
+    border-radius:100px;
+    color:#12141A;
+    font-weight:600;
+    letter-spacing:.03em;
+  }
+  .bin-thumb .dur{
+    position:absolute;bottom:12px;right:12px;
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--paper);
+    background:rgba(18,20,26,.7);
+    padding:3px 8px;
+    border-radius:5px;
+  }
+  .bin-body{padding:18px 18px 20px;}
+  .bin-body h3{
+    font-family:var(--display);
+    font-size:16.5px;
+    font-weight:600;
+    margin:0 0 8px;
+    line-height:1.3;
+  }
+  .bin-body p{
+    font-size:13px;
+    color:var(--paper-dim);
+    line-height:1.6;
+    margin:0 0 14px;
+  }
+  .bin-body .hook{
+    font-size:12.5px;
+    font-family:var(--mono);
+    color:var(--red);
+  }
+  .bin-body .hook:hover{color:#ff8677;}
+
+  /* ---------- about / project file ---------- */
+  .about-panel{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:48px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:40px;
+  }
+  .about-photo{
+    aspect-ratio:3/4;
+    border-radius:12px;
+    background:
+      radial-gradient(circle at 60% 30%, rgba(255,200,87,.25), transparent 50%),
+      linear-gradient(160deg,#22262F,#14161C);
+    position:relative;
+    overflow:hidden;
+  }
+  .about-photo .corner{
+    position:absolute;font-family:var(--mono);font-size:10px;color:var(--paper-dim);
+  }
+  .about-photo .corner.tl{top:12px;left:12px;}
+  .about-photo .corner.br{bottom:12px;right:12px;}
+  .about-meta{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px 24px;
+    margin:26px 0 24px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .about-meta div span.k{
+    display:block;font-family:var(--mono);font-size:10.5px;color:var(--paper-dim);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;
+  }
+  .about-meta div span.v{font-size:14px;}
+  .about-panel h2{font-family:var(--display);font-size:28px;margin:0 0 16px;font-weight:700;}
+  .about-panel p.story{font-size:15px;line-height:1.8;color:var(--paper-dim);margin:0 0 14px;}
+
+  /* ---------- export presets ---------- */
+  .export-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+  .export-card{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    min-height:210px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .export-card:hover{transform:translateY(-3px);}
+  .export-card.free{background:var(--panel);}
+  .export-card.paid{
+    background:linear-gradient(160deg, rgba(255,90,70,.12), var(--panel));
+    border-color:rgba(255,90,70,.35);
+  }
+  .export-badge{
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:4px 9px;
+    border-radius:100px;
+    width:fit-content;
+    margin-bottom:16px;
+  }
+  .export-badge.free{background:rgba(79,209,197,.18);color:var(--teal);}
+  .export-badge.paid{background:rgba(255,90,70,.2);color:#ff8677;}
+  .export-card h4{font-family:var(--display);font-size:16px;font-weight:600;margin:0 0 8px;}
+  .export-card p{font-size:12.5px;color:var(--paper-dim);line-height:1.6;margin:0 0 auto;flex-grow:1;}
+  .export-foot{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:11px;color:var(--paper-dim);
+    padding-top:14px;margin-top:14px;border-top:1px solid var(--line);
+  }
+  .export-foot .price{color:var(--paper);font-weight:600;}
+
+  /* ---------- newsletter / render queue ---------- */
+  .render-queue{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:48px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    gap:32px;
+  }
+  .render-queue h2{font-family:var(--display);font-size:26px;margin:0 0 10px;font-weight:700;}
+  .render-queue p{color:var(--paper-dim);font-size:14px;margin:0;max-width:44ch;}
+  .render-form{display:flex;gap:10px;}
+  .render-form input{
+    background:var(--ink);
+    border:1px solid var(--line);
+    border-radius:100px;
+    padding:14px 20px;
+    color:var(--paper);
+    font-family:var(--mono);
+    font-size:13px;
+    width:240px;
+  }
+  .render-form input::placeholder{color:var(--paper-dim);}
+  .render-form button{
+    background:var(--amber);
+    color:#12141A;
+    border:none;
+    border-radius:100px;
+    padding:14px 24px;
+    font-family:var(--display);
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+  }
+  .render-form button:hover{background:#ffd478;}
+
+  /* ---------- footer ---------- */
+  footer{
+    max-width:1180px;margin:90px auto 0;padding:24px;
+    border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:11.5px;color:var(--paper-dim);
+  }
+  footer .status{display:flex;gap:8px;align-items:center;}
+  footer .status .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  footer .foot-links{display:flex;gap:22px;}
+  footer .foot-links a:hover{color:var(--paper);}
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;}
+    .bin-grid{grid-template-columns:1fr 1fr;}
+    .export-grid{grid-template-columns:1fr 1fr;}
+    .about-panel{grid-template-columns:1fr;}
+    .render-queue{grid-template-columns:1fr;text-align:left;}
+    .render-form{flex-wrap:wrap;}
+    .render-form input{width:100%;}
+    nav.top-nav{display:none;}
+  }
+  @media (max-width:560px){
+    .bin-grid{grid-template-columns:1fr;}
+    .export-grid{grid-template-columns:1fr;}
+    .clip span.label{font-size:11px;}
+    .about-panel{padding:24px;}
+    .render-queue{padding:28px;}
+    footer{flex-direction:column;gap:14px;align-items:flex-start;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker, .playhead, .rec .dot{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>REC</span> ตัดต่อ EP.42 กำลังอัปโหลด&nbsp;&nbsp;•&nbsp;&nbsp; <span>NEW</span> รีวิว AI Tool ตัวใหม่ประจำสัปดาห์&nbsp;&nbsp;•&nbsp;&nbsp; <span>LIVE</span> เบื้องหลังงานโฆษณาชิ้นล่าสุด&nbsp;&nbsp;•&nbsp;&nbsp; <span>DROP</span> Preset ฟรีใหม่ 3 แบบ&nbsp;&nbsp;•&nbsp;&nbsp;
+      <span>REC</span> ตัดต่อ EP.42 กำลังอัปโหลด&nbsp;&nbsp;•&nbsp;&nbsp; <span>NEW</span> รีวิว AI Tool ตัวใหม่ประจำสัปดาห์&nbsp;&nbsp;•&nbsp;&nbsp; <span>LIVE</span> เบื้องหลังงานโฆษณาชิ้นล่าสุด&nbsp;&nbsp;•&nbsp;&nbsp; <span>DROP</span> Preset ฟรีใหม่ 3 แบบ&nbsp;&nbsp;•&nbsp;&nbsp;
+    </div>
+  </div>
+
+  <header>
+    <div class="logo"><span class="dot"></span>CUTSCENE.</div>
+    <nav class="top-nav">
+      <a href="#bin">คอนเทนต์</a>
+      <a href="#about">เกี่ยวกับ</a>
+      <a href="#export">คอร์ส/ของฟรี</a>
+    </nav>
+    <a href="#export" class="btn-ghost">ดูคอร์ส →</a>
+  </header>
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Creator · Editor · เล่าเรื่องผ่านไทม์ไลน์</div>
+      <h1>ตัดต่อให้สนุก<br>เล่าเบื้องหลังให้<span class="hl">เข้าใจง่าย</span></h1>
+      <p class="lead">รวมเทคนิคตัดต่อ รีวิวเครื่องมือ AI และเรื่องราวเบื้องหลังงานจริง เผื่อใครอยากทำคอนเทนต์ให้ปังแบบไม่ต้องเดา</p>
+      <div class="hero-ctas">
+        <a href="#bin" class="btn-primary">▶ ดูคลิปล่าสุด</a>
+        <a href="#export" class="btn-text">มีคอร์สสอนละเอียดด้วยนะ</a>
+      </div>
+    </div>
+    <div class="player">
+      <div class="frame-top">
+        <div class="rec"><span class="dot"></span>REC</div>
+        <div>1080 × 1350</div>
+      </div>
+      <div class="play-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#12141A"/></svg>
+      </div>
+      <div class="frame-bottom">
+        <div>
+          <div class="title-mini">เทคนิคตัดจังหวะให้ดูลื่นใน 5 นาที</div>
+          <div class="time">00:04:52</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-section">
+    <div class="timeline-label">
+      <span>V1 — หมวดคอนเทนต์</span>
+      <span>00:00:00 — 00:12:40</span>
+    </div>
+    <div class="timeline">
+      <div class="playhead"></div>
+      <div class="clip c1"><span class="label">เทคนิคตัดต่อ</span><small>32 คลิป</small></div>
+      <div class="clip c2"><span class="label">รีวิว AI Tools</span><small>18 คลิป</small></div>
+      <div class="clip c3"><span class="label">เบื้องหลัง</span><small>24 คลิป</small></div>
+      <div class="clip c4"><span class="label">ไลฟ์สไตล์</span><small>14 คลิป</small></div>
+    </div>
+  </div>
+
+  <section id="bin">
+    <div class="section-head">
+      <div>
+        <span class="tag">Media Bin</span>
+        <h2>คลิปล่าสุดจากกองถ่าย</h2>
+      </div>
+      <p>เนื้อหาฟรีทุกชิ้น พร้อมจุดเชื่อมไปคอร์สแบบไม่กดดัน — ดูก่อน ชอบค่อยเรียนต่อ</p>
+    </div>
+    <div class="bin-grid">
+
+      <div class="bin-card">
+        <div class="bin-thumb">
+          <span class="cat-tab" style="background:var(--red)">เทคนิคตัดต่อ</span>
+          <span class="dur">04:52</span>
+        </div>
+        <div class="bin-body">
+          <h3>3 จังหวะตัดที่ทำให้คลิปดูโปรขึ้นทันที</h3>
+          <p>เทคนิคจับจังหวะเสียงกับภาพที่มือใหม่มักพลาด อธิบายแบบเห็นภาพ ทำตามได้เลย</p>
+          <a href="#" class="hook">สอนละเอียดกว่านี้ในคอร์ส Editing 101 →</a>
+        </div>
+      </div>
+
+      <div class="bin-card">
+        <div class="bin-thumb">
+          <span class="cat-tab" style="background:var(--amber)">รีวิว AI Tools</span>
+          <span class="dur">07:14</span>
+        </div>
+        <div class="bin-body">
+          <h3>ลองเครื่องมือ AI ตัดคลิปอัตโนมัติ คุ้มจริงไหม</h3>
+          <p>รีวิวแบบใช้งานจริงหน้างาน พร้อมเทียบเวลาที่ประหยัดได้กับงานตัดต่อทั่วไป</p>
+          <a href="#" class="hook">โหลด workflow ที่ใช้ในคลิปนี้ฟรี →</a>
+        </div>
+      </div>
+
+      <div class="bin-card">
+        <div class="bin-thumb">
+          <span class="cat-tab" style="background:var(--teal)">เบื้องหลัง</span>
+          <span class="dur">11:03</span>
+        </div>
+        <div class="bin-body">
+          <h3>วันที่งานพังกลางกอง แล้วกู้สถานการณ์ยังไง</h3>
+          <p>เรื่องจริงจากงานโฆษณาชิ้นล่าสุด ที่ทุกอย่างไม่เป็นไปตามแผน แต่จบงานได้สวย</p>
+          <a href="#" class="hook">ดูขั้นตอนทำงานเต็มในคอร์ส Workflow →</a>
+        </div>
+      </div>
+
+      <div class="bin-card">
+        <div class="bin-thumb">
+          <span class="cat-tab" style="background:var(--violet)">ไลฟ์สไตล์</span>
+          <span class="dur">06:20</span>
+        </div>
+        <div class="bin-body">
+          <h3>โต๊ะทำงานตัดต่อของผม จัดยังไงให้โฟกัส</h3>
+          <p>อุปกรณ์ ซอฟต์แวร์ และนิสัยเล็กๆ ที่ช่วยให้ตัดต่อได้ไวขึ้นในแต่ละวัน</p>
+          <a href="#" class="hook">ดูลิสต์อุปกรณ์ที่ใช้จริงทั้งหมด →</a>
+        </div>
+      </div>
+
+      <div class="bin-card">
+        <div class="bin-thumb">
+          <span class="cat-tab" style="background:var(--red)">เทคนิคตัดต่อ</span>
+          <span class="dur">05:41</span>
+        </div>
+        <div class="bin-body">
+          <h3>Color grade แบบเร็ว ให้ได้ฟีลหนังใน 2 นาที</h3>
+          <p>สูตร LUT และการปรับสีเบื้องต้นที่ใช้ได้กับเกือบทุกงาน ไม่ต้องเก่งสีมาก่อน</p>
+          <a href="#" class="hook">มี preset สีชุดนี้แจกฟรีด้านล่าง →</a>
+        </div>
+      </div>
+
+      <div class="bin-card">
+        <div class="bin-thumb">
+          <span class="cat-tab" style="background:var(--amber)">รีวิว AI Tools</span>
+          <span class="dur">08:37</span>
+        </div>
+        <div class="bin-body">
+          <h3>เทียบ AI เขียนสคริปต์ 3 ตัว ตัวไหนเข้าใจงานครีเอเตอร์ที่สุด</h3>
+          <p>ทดสอบกับบรีฟงานจริง ดูว่าตัวไหนช่วยประหยัดเวลาคิดคอนเทนต์ได้มากที่สุด</p>
+          <a href="#" class="hook">เทมเพลตพรอมป์ที่ใช้ อยู่ในคอร์ส AI Content →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <div>
+        <span class="tag">Project File</span>
+        <h2>เรื่องราวก่อนจะมาถึงวันนี้</h2>
+      </div>
+    </div>
+    <div class="about-panel">
+      <div class="about-photo">
+        <span class="corner tl">IMG_0142.MOV</span>
+        <span class="corner br">3:4 · RAW</span>
+      </div>
+      <div>
+        <h2>จากตัดคลิปงานแต่งงาน สู่ห้องทำงานที่มีทีมช่วยกัน 4 คน</h2>
+        <p class="story">เริ่มจากตัดวิดีโองานแต่งให้เพื่อนแบบไม่คิดเงิน จนวันหนึ่งมีคนถามว่า "ตัดยังไงให้ดูดีขนาดนี้" นั่นคือจุดเริ่มต้นของการอัดคลิปสอนตัวแรก</p>
+        <p class="story">ตอนนี้ทำคอนเทนต์เต็มเวลา ควบคู่ไปกับรับงานโปรดักชันจริง เพื่อให้ทุกเทคนิคที่สอนมาจากงานที่ใช้จริง ไม่ใช่แค่ทฤษฎี</p>
+        <div class="about-meta">
+          <div><span class="k">เริ่มทำ</span><span class="v">2019</span></div>
+          <div><span class="k">งานที่ทำ</span><span class="v">300+ โปรเจกต์</span></div>
+          <div><span class="k">สอนไปแล้ว</span><span class="v">2,400+ คน</span></div>
+          <div><span class="k">เครื่องมือหลัก</span><span class="v">Premiere · AI Tools</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="export">
+    <div class="section-head">
+      <div>
+        <span class="tag">Export Presets</span>
+        <h2>ของฟรีและคอร์สที่แนะนำ</h2>
+      </div>
+      <p>เลือกเอาตามที่ต้องการ ของฟรีก็เอาไปใช้ได้เต็มที่ อยากเรียนลึกค่อยไปต่อคอร์ส</p>
+    </div>
+    <div class="export-grid">
+
+      <div class="export-card free">
+        <span class="export-badge free">ฟรี</span>
+        <h4>ชุด Preset สี Cinematic 10 แบบ</h4>
+        <p>ใช้ได้ทันทีกับ Premiere และ DaVinci ปรับแค่ค่าเดียวก็เปลี่ยนฟีลได้เลย</p>
+        <div class="export-foot"><span>.zip · 24MB</span><span class="price">ดาวน์โหลด →</span></div>
+      </div>
+
+      <div class="export-card free">
+        <span class="export-badge free">ฟรี</span>
+        <h4>เช็กลิสต์ก่อนส่งงานลูกค้า</h4>
+        <p>ลิสต์ 12 ข้อที่ควรเช็กก่อนกดส่ง ลดโอกาสโดนแก้กลับ</p>
+        <div class="export-foot"><span>.pdf · 1.2MB</span><span class="price">ดาวน์โหลด →</span></div>
+      </div>
+
+      <div class="export-card paid">
+        <span class="export-badge paid">คอร์ส</span>
+        <h4>Editing 101 — ตัดต่อให้ดูโปรตั้งแต่คลิปแรก</h4>
+        <p>ตั้งแต่พื้นฐานจนถึงจังหวะตัดขั้นสูง พร้อมไฟล์ฝึกจริง 8 ชุด</p>
+        <div class="export-foot"><span>6 ชม. · 32 บท</span><span class="price">1,490 บาท</span></div>
+      </div>
+
+      <div class="export-card paid">
+        <span class="export-badge paid">คอร์ส</span>
+        <h4>AI Content Workflow</h4>
+        <p>ใช้ AI ช่วยคิดคอนเทนต์ เขียนสคริปต์ และตัดต่อให้เร็วขึ้นแบบเป็นระบบ</p>
+        <div class="export-foot"><span>4 ชม. · 20 บท</span><span class="price">1,290 บาท</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="render-queue">
+      <div>
+        <h2>เพิ่มตัวเองเข้าคิว Render</h2>
+        <p>ฝากอีเมลไว้ รับ preset ใหม่ เทคนิคที่ไม่ได้พูดในคลิป และส่วนลดคอร์สก่อนใคร ส่งไม่ถี่ ไม่สแปม</p>
+      </div>
+      <form class="render-form">
+        <input type="email" placeholder="อีเมลของคุณ">
+        <button type="submit">เข้าคิว →</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="status"><span class="dot"></span>ONLINE — อัปเดตทุกวันอังคาร/ศุกร์</div>
+    <div class="foot-links">
+      <a href="#">IG</a>
+      <a href="#">YouTube</a>
+      <a href="#">TikTok</a>
+      <a href="#">ติดต่องาน</a>
+    </div>
+  </footer>
+
+</body>
+</html>
