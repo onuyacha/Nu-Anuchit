@@ -370,8 +370,19 @@
     position:relative;
     overflow:hidden;
   }
+  .about-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 20%;
+    display:block;
+  }
   .about-photo .corner{
-    position:absolute;font-family:var(--mono);font-size:10px;color:var(--paper-dim);
+    position:absolute;font-family:var(--mono);font-size:10px;color:var(--paper);
+    background:rgba(18,20,26,.55);
+    padding:3px 7px;
+    border-radius:4px;
+    backdrop-filter:blur(2px);
   }
   .about-photo .corner.tl{top:12px;left:12px;}
   .about-photo .corner.br{bottom:12px;right:12px;}
@@ -660,6 +671,7 @@
     </div>
     <div class="about-panel">
       <div class="about-photo">
+        <img src="profile.jpg" alt="รูปโปรไฟล์">
         <span class="corner tl">IMG_0142.MOV</span>
         <span class="corner br">3:4 · RAW</span>
       </div>
